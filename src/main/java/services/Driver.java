@@ -1,6 +1,7 @@
 package services;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -21,9 +22,12 @@ public class Driver {
     }
 
     private static WebDriver initDriver(){
-        WebDriver driver = new FirefoxDriver();
-//        driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-//        driver.manage().timeouts().implicitlyWait(COMMAND_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+//        WebDriver driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(COMMAND_DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
     }
